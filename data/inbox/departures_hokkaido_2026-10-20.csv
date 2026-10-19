@@ -1,0 +1,27 @@
+train_id,train_type,origin,destination,sched_dep,delay_s
+HOK-001,Hayabusa,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 06:00:00,20
+HOK-002,Hayate,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 06:39:00,20
+HOK-003,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 07:18:00,0
+HOK-004,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 07:57:00,0
+HOK-005,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 08:36:00,15
+HOK-006,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 09:16:00,194
+HOK-007,Hayabusa,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 09:55:00,10
+HOK-008,Hayate,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 10:34:00,0
+HOK-009,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 11:13:00,0
+HOK-010,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 11:53:00,20
+HOK-011,Hayabusa,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 12:32:00,20
+HOK-012,Hayate,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 13:11:00,30
+HOK-013,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 13:50:00,10
+HOK-014,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 14:30:00,15
+HOK-015,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 15:09:00,0
+HOK-016,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 15:48:00,0
+HOK-017,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 16:27:00,15
+HOK-018,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 17:06:00,0
+HOK-019,Hayabusa,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 17:46:00,890
+HOK-020,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 18:25:00,10
+HOK-021,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 19:04:00,0
+HOK-022,Hayate,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 19:43:00,15
+HOK-023,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 20:23:00,15
+HOK-024,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 21:02:00,0
+HOK-025,Hayate,Shin-Aomori,Shin-Hakodate-Hokuto,2026-10-20 21:41:00,0
+HOK-026,Hayabusa,Shin-Hakodate-Hokuto,Shin-Aomori,2026-10-20 22:20:00,0
