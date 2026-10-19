@@ -1,0 +1,22 @@
+[
+  {
+    "code": "tokaido",
+    "name": "Tōkaidō",
+    "file": "departures_tokaido_2026-10-20.csv"
+  },
+  {
+    "code": "sanyo",
+    "name": "Sanyō",
+    "file": "departures_sanyo_2026-10-20.csv"
+  },
+  {
+    "code": "tohoku",
+    "name": "Tōhoku",
+    "file": "departures_tohoku_2026-10-20.csv"
+  },
+  {
+    "code": "hokkaido",
+    "name": "Hokkaidō",
+    "file": "departures_hokkaido_2026-10-20.csv"
+  }
+]
