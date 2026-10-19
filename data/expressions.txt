@@ -1,0 +1,60 @@
+PIPELINE 9 : SHINKANSEN, UN PIPELINE PARENT QUI ORCHESTRE UN PIPELINE ENFANT
+Chaque valeur est sur sa propre ligne : copiez la ligne entière, sans le titre entre crochets.
+
+==================== WH_Shinkansen (une seule fois) ====================
+
+[Nouvelle requête SQL dans l'entrepôt]
+CREATE TABLE dbo.line_scores (line_code varchar(20), on_time_pct decimal(5,1), summary varchar(200));
+
+==================== PL_Line (le pipeline enfant) ====================
+
+[Paramètres de PL_Line : nom, type, valeur par défaut]
+line_code    String    tokaido
+line_name    String    Tōkaidō
+file_name    String    departures_tokaido_2026-10-20.csv
+
+[Load departures : source, nom de fichier (contenu dynamique)]
+@pipeline().parameters.file_name
+
+[Load departures : destination, nom de table (contenu dynamique)]
+dep_@{pipeline().parameters.line_code}
+
+[Let endpoint sync : temps d'attente en secondes]
+90
+
+[Score line : script, type Requête (contenu dynamique)]
+INSERT INTO dbo.line_scores SELECT '@{pipeline().parameters.line_code}', CAST(100.0 * SUM(CASE WHEN CAST(delay_s AS int) < 60 THEN 1 ELSE 0 END) / COUNT(*) AS decimal(5,1)), CONCAT('@{pipeline().parameters.line_name} ', CAST(100.0 * SUM(CASE WHEN CAST(delay_s AS int) < 60 THEN 1 ELSE 0 END) / COUNT(*) AS decimal(5,1)), ' % à l''heure (', COUNT(*), ' départs, max ', MAX(CAST(delay_s AS int)), ' s)') FROM LH_Shinkansen.dbo.dep_@{pipeline().parameters.line_code}; SELECT 1 AS ok;
+
+==================== PL_Network (le pipeline parent) ====================
+
+[Reset scores : script, type Requête]
+DELETE FROM dbo.line_scores; SELECT 1 AS ok;
+
+[For each line : éléments]
+@activity('Read lines').output.value
+
+[Run line : paramètre line_code]
+@item().code
+
+[Run line : paramètre line_name]
+@item().name
+
+[Run line : paramètre file_name]
+@item().file
+
+[Read scores : script, type Requête]
+SELECT STRING_AGG(summary, ' | ') WITHIN GROUP (ORDER BY on_time_pct DESC) AS report FROM dbo.line_scores;
+
+[Post network : titre]
+Shinkansen
+
+[Post network : message]
+Shinkansen, départs du 20 octobre 2026 : @{activity('Read scores').output.resultSets[0].rows[0].report}
+
+==================== Vérifier dans WH_Shinkansen ====================
+
+[Le tableau après une exécution]
+SELECT * FROM dbo.line_scores ORDER BY on_time_pct DESC;
+
+[Requête de contrôle]
+SELECT 'Tōkaidō' AS line, COUNT(*) AS departures, MAX(CAST(delay_s AS int)) AS max_delay_s FROM LH_Shinkansen.dbo.dep_tokaido UNION ALL SELECT 'Sanyō', COUNT(*), MAX(CAST(delay_s AS int)) FROM LH_Shinkansen.dbo.dep_sanyo UNION ALL SELECT 'Tōhoku', COUNT(*), MAX(CAST(delay_s AS int)) FROM LH_Shinkansen.dbo.dep_tohoku UNION ALL SELECT 'Hokkaidō', COUNT(*), MAX(CAST(delay_s AS int)) FROM LH_Shinkansen.dbo.dep_hokkaido;
